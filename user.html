@@ -1,0 +1,2098 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>My Account | Premium Dashboard</title>
+
+     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+     
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-navy: #0F2C59;
+            --primary-gold: #E8C872;
+            --primary-gold-light: rgba(232, 200, 114, 0.15);
+            --navy-light: rgba(15, 44, 89, 0.05);
+
+            --bg-main: #F4F7F6;
+            --bg-card: #FFFFFF;
+            --border-line: rgba(15, 44, 89, 0.1);
+
+            --text-dark: #0F2C59;
+            --text-muted: #666666;
+            --text-light-gray: #888888;
+
+            --success: #00b894;
+            --success-light: rgba(0, 184, 148, 0.1);
+            --danger: #ff3b3b;
+            --danger-light: rgba(255, 59, 59, 0.1);
+            --warning: #f39c12;
+            --warning-light: rgba(243, 156, 18, 0.1);
+
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-main);
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-gold);
+            border-radius: 4px;
+        }
+
+        .dashboard-layout {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+         
+        .sidebar {
+            width: 280px;
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.4s ease;
+            z-index: 1000;
+            position: fixed;
+            height: 100vh;
+            box-shadow: 5px 0 20px rgba(15, 44, 89, 0.05);
+            border-right: 1px solid var(--border-line);
+            overflow-y: auto;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 44, 89, 0.8);
+            z-index: 999;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        .sidebar-header {
+            padding: 30px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-line);
+            position: sticky;
+            top: 0;
+            background: #FFFFFF;
+            z-index: 10;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-navy);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-text i {
+            color: var(--primary-gold);
+            font-size: 26px;
+        }
+
+        .close-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary-navy);
+            cursor: pointer;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 25px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex: 1;
+        }
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 30px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            cursor: pointer;
+        }
+
+        .menu-link i {
+            font-size: 18px;
+            width: 25px;
+            text-align: center;
+            color: rgba(15, 44, 89, 0.4);
+            transition: 0.3s;
+        }
+
+        .menu-link:hover {
+            background-color: var(--navy-light);
+            color: var(--primary-navy);
+        }
+
+        .menu-link:hover i {
+            color: var(--primary-navy);
+        }
+
+        .menu-link.active {
+            background-color: var(--primary-navy);
+            color: #FFFFFF;
+            border-left: 4px solid var(--primary-gold);
+        }
+
+        .menu-link.active i {
+            color: var(--primary-gold);
+        }
+
+        .sidebar-bottom {
+            padding: 20px 0 30px 0;
+            border-top: 1px solid var(--border-line);
+        }
+
+         
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            min-height: 100vh;
+            width: calc(100% - 280px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-header {
+            background: #FFFFFF;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-line);
+            position: sticky;
+            top: 0;
+            z-index: 998;
+            box-shadow: 0 5px 15px rgba(15, 44, 89, 0.02);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: var(--navy-light);
+            color: var(--primary-navy);
+            border: none;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .greeting h1 {
+            font-size: 22px;
+            color: var(--primary-navy);
+            font-weight: 800;
+            margin-bottom: 3px;
+        }
+
+        .greeting span {
+            color: var(--text-light-gray);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .notification-bell {
+            position: relative;
+            font-size: 22px;
+            color: var(--primary-navy);
+            cursor: pointer;
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            background: var(--danger);
+            border-radius: 50%;
+            border: 2px solid #FFF;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-gold);
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-size: 14px;
+            color: var(--primary-navy);
+            font-weight: 800;
+        }
+
+        .user-type {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+         
+        .view-section {
+            display: none;
+            padding: 40px;
+            flex-direction: column;
+            gap: 30px;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .view-section.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: var(--primary-navy);
+            font-weight: 800;
+        }
+
+        .scroll-anim {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-out;
+        }
+
+        .scroll-anim.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: #FFFFFF;
+            border: 1px solid var(--border-line);
+            border-radius: 8px;
+            padding: 10px 15px;
+            width: 350px;
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            padding-left: 10px;
+            font-size: 14px;
+            color: var(--text-dark);
+        }
+
+        .search-bar i {
+            color: var(--text-muted);
+        }
+
+         
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, #1a4282 100%);
+            border-radius: 20px;
+            padding: 40px;
+            color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(15, 44, 89, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .welcome-content h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .welcome-content p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 15px;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        .welcome-banner i.bg-icon {
+            position: absolute;
+            right: -20px;
+            bottom: -30px;
+            font-size: 180px;
+            color: rgba(255, 255, 255, 0.05);
+        }
+
+         
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .two-col-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+         
+        .stat-card {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid var(--border-line);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(15, 44, 89, 0.02);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-gold);
+            box-shadow: 0 15px 30px rgba(15, 44, 89, 0.08);
+        }
+
+        .stat-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+            background: var(--navy-light);
+            color: var(--primary-navy);
+        }
+
+        .stat-details h3 {
+            font-size: 24px;
+            color: var(--primary-navy);
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+
+        .stat-details p {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+         
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .property-card {
+            background: #FFFFFF;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border-line);
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(15, 44, 89, 0.03);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .property-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(15, 44, 89, 0.1);
+            border-color: var(--primary-gold);
+        }
+
+        .prop-img-box {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .prop-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .property-card:hover .prop-img-box img {
+            transform: scale(1.1);
+        }
+
+        .prop-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--primary-navy);
+            color: #FFF;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .prop-fav {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            background: #FFF;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--danger);
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .prop-info {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .prop-price {
+            font-size: 22px;
+            color: var(--primary-gold);
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .prop-title {
+            font-size: 16px;
+            color: var(--primary-navy);
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .prop-loc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .prop-features {
+            display: flex;
+            gap: 15px;
+            border-top: 1px dashed var(--border-line);
+            padding-top: 15px;
+            margin-top: auto;
+            margin-bottom: 20px;
+        }
+
+        .feat {
+            font-size: 13px;
+            color: var(--primary-navy);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-prop {
+            text-align: center;
+            padding: 12px;
+            background: var(--navy-light);
+            color: var(--primary-navy);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 13px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .btn-prop:hover {
+            background: var(--primary-navy);
+            color: #FFF;
+        }
+
+         
+        .content-box {
+            background: #FFFFFF;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--border-line);
+            box-shadow: 0 5px 15px rgba(15, 44, 89, 0.02);
+            overflow-x: scroll;
+        }
+
+         
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        th,
+        td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px dashed var(--border-line);
+            font-size: 14px;
+        }
+
+        th {
+            color: var(--text-light-gray);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        td {
+            color: var(--primary-navy);
+            font-weight: 600;
+        }
+
+        tr:hover td {
+            background: var(--bg-main);
+        }
+
+         
+        .status {
+            padding: 6px 12px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .status.upcoming {
+            background: var(--info-light);
+            color: var(--info);
+        }
+
+        .status.completed {
+            background: var(--success-light);
+            color: var(--success);
+        }
+
+        .status.pending {
+            background: var(--warning-light);
+            color: var(--warning);
+        }
+
+        .status.rejected {
+            background: var(--danger-light);
+            color: var(--danger);
+        }
+
+        .status.urgent {
+            background: rgba(255, 0, 0, 0.1);
+            color: red;
+        }
+
+         
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 8px;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            background: var(--bg-main);
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+            color: var(--primary-navy);
+            font-weight: 500;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            border-color: var(--primary-gold);
+            background: #FFFFFF;
+        }
+
+        .error-msg {
+            color: var(--danger);
+            font-size: 12px;
+            margin-top: 6px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .input-error {
+            border-color: var(--danger) !important;
+            background: var(--danger-light) !important;
+            animation: shake 0.4s;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25%,
+            75% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+        }
+
+        .btn-submit {
+            background: var(--primary-navy);
+            color: #FFFFFF;
+            padding: 16px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-gold);
+            color: var(--primary-navy);
+            box-shadow: 0 10px 20px rgba(232, 200, 114, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--border-line);
+            color: var(--primary-navy);
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--danger);
+            color: var(--danger);
+            background: var(--danger-light);
+        }
+
+        .form-success-box {
+            display: none;
+            background: var(--success-light);
+            color: var(--success);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 20px;
+            border: 1px solid var(--success);
+        }
+
+         
+        .toggle-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px dashed var(--border-line);
+        }
+
+        .toggle-info h4 {
+            color: var(--primary-navy);
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .toggle-info p {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: var(--success);
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(24px);
+        }
+
+         
+        .activity-timeline {
+            border-left: 2px solid var(--border-line);
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .act-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .act-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            border: 2px solid #FFF;
+        }
+
+        .act-item h4 {
+            font-size: 14px;
+            color: var(--primary-navy);
+            margin-bottom: 5px;
+        }
+
+        .act-item p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .act-time {
+            font-size: 11px;
+            color: var(--text-light-gray);
+            font-weight: 700;
+            display: block;
+            margin-top: 5px;
+        }
+
+         
+        .offer-card {
+            border: 1px solid var(--primary-gold);
+            background: var(--primary-gold-light);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .offer-card-details h4 {
+            color: var(--primary-navy);
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .offer-card-details p {
+            color: var(--text-dark);
+            font-size: 13px;
+        }
+
+        .offer-card-price {
+            text-align: right;
+        }
+
+        .offer-card-price span {
+            display: block;
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .offer-card-price h3 {
+            color: var(--primary-navy);
+            font-size: 24px;
+        }
+
+         
+        .news-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-line);
+        }
+
+        .news-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .news-text h4 {
+            font-size: 15px;
+            color: var(--primary-navy);
+            margin-bottom: 5px;
+        }
+
+        .news-text p {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+         
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .menu-toggle,
+            .close-btn {
+                display: block;
+            }
+
+            .two-col-grid,
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .offer-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .offer-card-price {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-header {
+                padding: 15px 20px;
+            }
+
+            .view-section {
+                padding: 20px;
+            }
+
+            .welcome-banner {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
+            }
+
+            .welcome-banner i.bg-icon {
+                display: none;
+            }
+
+            .search-bar {
+                width: 100%;
+            }
+
+            .header-right{
+                width: 100%;
+                justify-content: center;
+            }
+
+            .top-header{
+                flex-wrap: wrap;
+            }
+        }
+
+
+        .logo-img {
+            width: 150px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .logo-da {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo-da i {
+            font-size: 28px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dashboard-layout">
+         
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+         
+        <aside class="sidebar" id="sidebar">
+            <div>
+                <div class="sidebar-header">
+                    <div class="logo-da">
+                        <img src="./asset/logo (4).webp" alt="Company Logo" class="logo-img">
+                    </div>
+                    <button class="close-btn" id="closeSidebar"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <ul class="sidebar-menu">
+                    <li><a class="menu-link active" data-target="dashboard-view"><i class="fa-solid fa-border-all"></i>
+                            Overview</a></li>
+                    <li><a class="menu-link" data-target="saved-view"><i class="fa-regular fa-heart"></i> Saved
+                            Properties</a></li>
+                    <li><a class="menu-link" data-target="viewings-view"><i class="fa-regular fa-calendar-check"></i> My
+                            Viewings</a></li>
+                    <li><a class="menu-link" data-target="offers-view"><i class="fa-solid fa-file-signature"></i> My
+                            Offers</a></li>
+                    <li><a class="menu-link" data-target="profile-view"><i class="fa-solid fa-user-gear"></i> Profile
+                            Settings</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-bottom">
+                <a href="index.html" class="menu-link" style="color: var(--danger);"><i
+                        class="fa-solid fa-right-from-bracket" style="color: var(--danger);"></i> Logout</a>
+            </div>
+        </aside>
+
+         
+        <main class="main-content">
+
+             
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="openSidebar"><i class="fa-solid fa-bars-staggered"></i></button>
+                    <div class="greeting">
+                        <h1 id="page-title">Welcome back, <span>Arthur!</span></h1>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="notification-bell">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="notification-dot"></span>
+                    </div>
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <span class="user-name">Arthur Shelby</span>
+                            <span class="user-type">Premium Member</span>
+                        </div>
+                        <img src="./asset/m2 (3).webp"
+                            alt="User Profile" class="user-avatar">
+                    </div>
+                </div>
+            </header>
+
+            <!-- ==========================================
+                 1. OVERVIEW VIEW 
+                 ========================================== -->
+            <div id="dashboard-view" class="view-section active">
+
+                <div class="welcome-banner scroll-anim">
+                    <div class="welcome-content">
+                        <h2>Ready to find your dream home?</h2>
+                        <p>Explore our exclusive off-market luxury listings handpicked for your preferences. Connect
+                            with your dedicated agent today.</p>
+                    </div>
+                    <i class="fa-solid fa-house-chimney bg-icon"></i>
+                </div>
+
+                <section class="stats-grid scroll-anim">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-regular fa-heart"></i></div>
+                        <div class="stat-details">
+                            <h3>12</h3>
+                            <p>Saved Properties</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="color: var(--info); background: var(--info-light);"><i
+                                class="fa-regular fa-calendar"></i></div>
+                        <div class="stat-details">
+                            <h3>02</h3>
+                            <p>Upcoming Viewings</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="color: var(--warning); background: var(--warning-light);"><i
+                                class="fa-solid fa-file-signature"></i></div>
+                        <div class="stat-details">
+                            <h3>01</h3>
+                            <p>Active Offer</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="two-col-grid">
+                    <section class="content-box scroll-anim">
+                        <h2 class="section-title">Recent Activities</h2>
+                        <div class="activity-timeline">
+                            <div class="act-item">
+                                <h4>Offer Submitted</h4>
+                                <p>Your offer of $4.2M for "Ocean View Villa" has been sent to the seller. We are
+                                    awaiting their response.</p>
+                                <span class="act-time">Today, 10:30 AM</span>
+                            </div>
+                            <div class="act-item">
+                                <h4>Viewing Confirmed</h4>
+                                <p>Appointment set for "Skyline Penthouse" with Agent Emily Davis. A calendar invite has
+                                    been sent to your email.</p>
+                                <span class="act-time">Yesterday, 04:15 PM</span>
+                            </div>
+                            <div class="act-item">
+                                <h4>Property Saved</h4>
+                                <p>You favorited "Modern Smart Home" in London. Price dropped by 2% recently.</p>
+                                <span class="act-time">12 Sep 2026</span>
+                            </div>
+                            <div class="act-item">
+                                <h4>Profile Updated</h4>
+                                <p>Phone number and communication preferences updated successfully.</p>
+                                <span class="act-time">05 Sep 2026</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div style="display:flex; flex-direction:column; gap:30px;">
+                        <section class="content-box scroll-anim" style="background: var(--primary-navy); border: none;">
+                            <h2 class="section-title" style="color: #FFF;">Your Dedicated Agent</h2>
+                            <div style="text-align: center; margin-top: 20px;">
+                                <img src="./asset/woman1.webp"
+                                    alt="Agent"
+                                    style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--primary-gold); margin-bottom: 15px;">
+                                <h3 style="color: var(--primary-gold); font-size: 18px; margin-bottom: 5px;">Emily Davis
+                                </h3>
+                                <p style="color: rgba(255,255,255,0.7); font-size: 13px; margin-bottom: 20px;">Senior
+                                    Luxury Consultant</p>
+                                <a href="404.html" class="btn-submit"
+                                    style="background: var(--primary-gold); color: var(--primary-navy); padding: 12px;"><i
+                                        class="fa-solid fa-phone"></i> Call Agent</a>
+                            </div>
+                        </section>
+
+                        <section class="content-box scroll-anim">
+                            <h2 class="section-title">Market News</h2>
+                            <div style="margin-top: 15px;">
+                                <div class="news-item">
+                                    <img src="./asset/h14.webp"
+                                        class="news-img" alt="News">
+                                    <div class="news-text">
+                                        <h4>London Market Boom</h4>
+                                        <p>Luxury property values in Central London surge by 4.5% this quarter.</p>
+                                    </div>
+                                </div>
+                                <div class="news-item" style="border: none; margin-bottom:0; padding-bottom:0;">
+                                    <img src="./asset/h15.webp"
+                                        class="news-img" alt="News">
+                                    <div class="news-text">
+                                        <h4>Dubai Golden Visa Update</h4>
+                                        <p>New regulations make property investment in UAE more lucrative for expats.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <section class="content-box scroll-anim full-width">
+                    <div class="section-header">
+                        <h2 class="section-title">Recommended For You</h2>
+                        <a href="#" style="color: var(--primary-gold); font-weight: 700; text-decoration: none;">View
+                            All</a>
+                    </div>
+                    <div class="property-grid">
+                        <div class="property-card">
+                            <div class="prop-img-box">
+                                <span class="prop-badge">New Listing</span>
+                                <div class="prop-fav"><i class="fa-regular fa-heart"></i></div>
+                                <img src="./asset/h4.webp"
+                                    alt="Property">
+                            </div>
+                            <div class="prop-info">
+                                <div class="prop-price">$ 5,200,000</div>
+                                <div class="prop-title">Exclusive Marina Villa</div>
+                                <div class="prop-loc"><i class="fa-solid fa-location-dot"></i> Dubai Marina</div>
+                                <a href="404.html" class="btn-prop">View Details</a>
+                            </div>
+                        </div>
+                        <div class="property-card">
+                            <div class="prop-img-box">
+                                <span class="prop-badge">Price Drop</span>
+                                <div class="prop-fav"><i class="fa-regular fa-heart"></i></div>
+                                <img src="./asset/h5.webp"
+                                    alt="Property">
+                            </div>
+                            <div class="prop-info">
+                                <div class="prop-price">$ 2,900,000</div>
+                                <div class="prop-title">Manhattan Sky Loft</div>
+                                <div class="prop-loc"><i class="fa-solid fa-location-dot"></i> New York City</div>
+                                <a href="404.html" class="btn-prop">View Details</a>
+                            </div>
+                        </div>
+                        <div class="property-card">
+                            <div class="prop-img-box">
+                                <span class="prop-badge">Off Market</span>
+                                <div class="prop-fav"><i class="fa-regular fa-heart"></i></div>
+                                <img src="./asset/h6.webp"
+                                    alt="Property">
+                            </div>
+                            <div class="prop-info">
+                                <div class="prop-price">$ 4,150,000</div>
+                                <div class="prop-title">Victorian Townhouse</div>
+                                <div class="prop-loc"><i class="fa-solid fa-location-dot"></i> Chelsea, London</div>
+                                <a href="404.html" class="btn-prop">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- ==========================================
+                 2. SAVED PROPERTIES VIEW 
+                 ========================================== -->
+            <div id="saved-view" class="view-section">
+                <div class="section-header scroll-anim">
+                    <h2 class="section-title">Saved Properties (8)</h2>
+                    <div class="search-bar">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Search saved properties...">
+                    </div>
+                </div>
+
+                <div class="property-grid scroll-anim">
+                     
+                    <div class="property-card">
+                        <div class="prop-img-box">
+                            <span class="prop-badge">For Sale</span>
+                            <div class="prop-fav"><i class="fa-solid fa-heart"></i></div>
+                            <img src="./asset/h1.webp"
+                                alt="Property">
+                        </div>
+                        <div class="prop-info">
+                            <div class="prop-price">$ 4,500,000</div>
+                            <div class="prop-title">Ocean View Luxury Villa</div>
+                            <div class="prop-loc"><i class="fa-solid fa-location-dot"></i> Palm Jumeirah, Dubai</div>
+                            <div class="prop-features">
+                                <span class="feat"><i class="fa-solid fa-bed"></i> 5 Beds</span>
+                                <span class="feat"><i class="fa-solid fa-bath"></i> 6 Baths</span>
+                                <span class="feat"><i class="fa-solid fa-vector-square"></i> 8,500 sqft</span>
+                            </div>
+                            <a href="404.html" class="btn-prop">Request Viewing</a>
+                        </div>
+                    </div>
+                     
+                    <div class="property-card">
+                        <div class="prop-img-box">
+                            <span class="prop-badge" style="background: var(--warning);">Pending</span>
+                            <div class="prop-fav"><i class="fa-solid fa-heart"></i></div>
+                            <img src="./asset/h2.webp"
+                                alt="Property">
+                        </div>
+                        <div class="prop-info">
+                            <div class="prop-price">$ 8,200,000</div>
+                            <div class="prop-title">Skyline Penthouse</div>
+                            <div class="prop-loc"><i class="fa-solid fa-location-dot"></i> Downtown NYC, USA</div>
+                            <div class="prop-features">
+                                <span class="feat"><i class="fa-solid fa-bed"></i> 4 Beds</span>
+                                <span class="feat"><i class="fa-solid fa-bath"></i> 4.5 Baths</span>
+                                <span class="feat"><i class="fa-solid fa-vector-square"></i> 6,200 sqft</span>
+                            </div>
+                            <a href="404.html" class="btn-prop">View Details</a>
+                        </div>
+                    </div>
+                     
+                    <div class="property-card">
+                        <div class="prop-img-box">
+                            <span class="prop-badge">For Sale</span>
+                            <div class="prop-fav"><i class="fa-solid fa-heart"></i></div>
+                            <img src="./asset/h3.webp"
+                                alt="Property">
+                        </div>
+                        <div class="prop-info">
+                            <div class="prop-price">$ 1,150,000</div>
+                            <div class="prop-title">Modern Smart Home</div>
+                            <div class="prop-loc"><i class="fa-solid fa-location-dot"></i> Mayfair, London, UK</div>
+                            <div class="prop-features">
+                                <span class="feat"><i class="fa-solid fa-bed"></i> 3 Beds</span>
+                                <span class="feat"><i class="fa-solid fa-bath"></i> 2 Baths</span>
+                                <span class="feat"><i class="fa-solid fa-vector-square"></i> 2,400 sqft</span>
+                            </div>
+                            <a href="404.html" class="btn-prop">Request Viewing</a>
+                        </div>
+                    </div>
+                     
+                    <div class="property-card">
+                        <div class="prop-img-box">
+                            <span class="prop-badge">For Sale</span>
+                            <div class="prop-fav"><i class="fa-solid fa-heart"></i></div>
+                            <img src="./asset/h4.webp"
+                                alt="Property">
+                        </div>
+                        <div class="prop-info">
+                            <div class="prop-price">$ 12,500,000</div>
+                            <div class="prop-title">Beverly Hills Mansion</div>
+                            <div class="prop-loc"><i class="fa-solid fa-location-dot"></i> California, USA</div>
+                            <div class="prop-features">
+                                <span class="feat"><i class="fa-solid fa-bed"></i> 7 Beds</span>
+                                <span class="feat"><i class="fa-solid fa-bath"></i> 9 Baths</span>
+                                <span class="feat"><i class="fa-solid fa-vector-square"></i> 14,000 sqft</span>
+                            </div>
+                            <a href="404.html" class="btn-prop">Request Viewing</a>
+                        </div>
+                    </div>
+                     
+                    <div class="property-card">
+                        <div class="prop-img-box">
+                            <span class="prop-badge">Off Market</span>
+                            <div class="prop-fav"><i class="fa-solid fa-heart"></i></div>
+                            <img src="./asset/h5.webp"
+                                alt="Property">
+                        </div>
+                        <div class="prop-info">
+                            <div class="prop-price">$ 3,800,000</div>
+                            <div class="prop-title">Lakefront Estate</div>
+                            <div class="prop-loc"><i class="fa-solid fa-location-dot"></i> Lake Como, Italy</div>
+                            <div class="prop-features">
+                                <span class="feat"><i class="fa-solid fa-bed"></i> 4 Beds</span>
+                                <span class="feat"><i class="fa-solid fa-bath"></i> 5 Baths</span>
+                            </div>
+                            <a href="404.html" class="btn-prop">View Details</a>
+                        </div>
+                    </div>
+                     
+                    <div class="property-card">
+                        <div class="prop-img-box">
+                            <span class="prop-badge">For Sale</span>
+                            <div class="prop-fav"><i class="fa-solid fa-heart"></i></div>
+                            <img src="./asset/h6.webp"
+                                alt="Property">
+                        </div>
+                        <div class="prop-info">
+                            <div class="prop-price">$ 6,200,000</div>
+                            <div class="prop-title">Contemporary Glass Villa</div>
+                            <div class="prop-loc"><i class="fa-solid fa-location-dot"></i> Malibu, USA</div>
+                            <div class="prop-features">
+                                <span class="feat"><i class="fa-solid fa-bed"></i> 5 Beds</span>
+                                <span class="feat"><i class="fa-solid fa-bath"></i> 4 Baths</span>
+                            </div>
+                            <a href="404.html" class="btn-prop">Request Viewing</a>
+                        </div>
+                    </div>
+                     
+                    <div class="property-card">
+                        <div class="prop-img-box">
+                            <span class="prop-badge">Price Drop</span>
+                            <div class="prop-fav"><i class="fa-solid fa-heart"></i></div>
+                            <img src="./asset/h7.webp"
+                                alt="Property">
+                        </div>
+                        <div class="prop-info">
+                            <div class="prop-price">$ 2,100,000</div>
+                            <div class="prop-title">Urban Minimalist Loft</div>
+                            <div class="prop-loc"><i class="fa-solid fa-location-dot"></i> Tokyo, Japan</div>
+                            <div class="prop-features">
+                                <span class="feat"><i class="fa-solid fa-bed"></i> 2 Beds</span>
+                                <span class="feat"><i class="fa-solid fa-bath"></i> 2 Baths</span>
+                            </div>
+                            <a href="404.html" class="btn-prop">Request Viewing</a>
+                        </div>
+                    </div>
+                     
+                    <div class="property-card">
+                        <div class="prop-img-box">
+                            <span class="prop-badge">For Sale</span>
+                            <div class="prop-fav"><i class="fa-solid fa-heart"></i></div>
+                            <img src="./asset/h8.webp"
+                                alt="Property">
+                        </div>
+                        <div class="prop-info">
+                            <div class="prop-price">$ 9,500,000</div>
+                            <div class="prop-title">Historic French Chateau</div>
+                            <div class="prop-loc"><i class="fa-solid fa-location-dot"></i> Provence, France</div>
+                            <div class="prop-features">
+                                <span class="feat"><i class="fa-solid fa-bed"></i> 12 Beds</span>
+                                <span class="feat"><i class="fa-solid fa-bath"></i> 10 Baths</span>
+                            </div>
+                            <a href="404.html" class="btn-prop">Request Viewing</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==========================================
+                 3. MY VIEWINGS 
+                 ========================================== -->
+            <div id="viewings-view" class="view-section">
+
+                <section class="stats-grid scroll-anim">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--info-light); color: var(--info);"><i
+                                class="fa-regular fa-calendar-check"></i></div>
+                        <div class="stat-details">
+                            <h3>02</h3>
+                            <p>Upcoming</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--success-light); color: var(--success);"><i
+                                class="fa-solid fa-check-double"></i></div>
+                        <div class="stat-details">
+                            <h3>08</h3>
+                            <p>Completed</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--danger-light); color: var(--danger);"><i
+                                class="fa-solid fa-ban"></i></div>
+                        <div class="stat-details">
+                            <h3>01</h3>
+                            <p>Cancelled</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="two-col-grid">
+                    <section class="content-box scroll-anim full-width">
+                        <h2 class="section-title">Viewing Schedule</h2>
+                        <div class="table-container" style="margin-top: 20px;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Date & Time</th>
+                                        <th>Property Details</th>
+                                        <th>Agent Name</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>25 Sep 2026<br><span
+                                                    style="font-size:12px;color:var(--text-muted)">10:30
+                                                    AM</span></strong></td>
+                                        <td>Ocean View Villa<br><span
+                                                style="font-size:12px;color:var(--text-muted)">Palm Jumeirah,
+                                                Dubai</span></td>
+                                        <td>Emily Davis</td>
+                                        <td><span class="status upcoming">Upcoming</span></td>
+                                        <td><a href="404.html"
+                                                style="color:var(--primary-gold); font-weight:700; text-decoration:none;">Reschedule</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>28 Sep 2026<br><span
+                                                    style="font-size:12px;color:var(--text-muted)">02:00
+                                                    PM</span></strong></td>
+                                        <td>Skyline Penthouse<br><span
+                                                style="font-size:12px;color:var(--text-muted)">Downtown NYC</span></td>
+                                        <td>John Smith</td>
+                                        <td><span class="status upcoming">Upcoming</span></td>
+                                        <td><a href="404.html"
+                                                style="color:var(--primary-gold); font-weight:700; text-decoration:none;">Reschedule</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>10 Sep 2026<br><span
+                                                    style="font-size:12px;color:var(--text-muted)">11:00
+                                                    AM</span></strong></td>
+                                        <td>Modern Smart Home<br><span
+                                                style="font-size:12px;color:var(--text-muted)">London, UK</span></td>
+                                        <td>Michael Rossi</td>
+                                        <td><span class="status completed">Completed</span></td>
+                                        <td><a href="404.html"
+                                                style="color:var(--primary-navy); font-weight:700; text-decoration:none;">Make
+                                                Offer</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>05 Aug 2026<br><span
+                                                    style="font-size:12px;color:var(--text-muted)">04:15
+                                                    PM</span></strong></td>
+                                        <td>Marina Bay Condo<br><span
+                                                style="font-size:12px;color:var(--text-muted)">Singapore</span></td>
+                                        <td>Sarah Chen</td>
+                                        <td><span class="status completed">Completed</span></td>
+                                        <td><a href="#"
+                                                style="color:var(--text-muted); font-weight:700; text-decoration:none;">Feedback</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>20 Jul 2026<br><span
+                                                    style="font-size:12px;color:var(--text-muted)">09:00
+                                                    AM</span></strong></td>
+                                        <td>Victorian Townhouse<br><span
+                                                style="font-size:12px;color:var(--text-muted)">Chelsea, London</span>
+                                        </td>
+                                        <td>Michael Rossi</td>
+                                        <td><span class="status rejected">Cancelled</span></td>
+                                        <td><a href="#"
+                                                style="color:var(--text-muted); font-weight:700; text-decoration:none;">Re-book</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>15 Jun 2026<br><span
+                                                    style="font-size:12px;color:var(--text-muted)">01:30
+                                                    PM</span></strong></td>
+                                        <td>Lakefront Estate<br><span
+                                                style="font-size:12px;color:var(--text-muted)">Lake Como, Italy</span>
+                                        </td>
+                                        <td>Emily Davis</td>
+                                        <td><span class="status completed">Completed</span></td>
+                                        <td><a href="#"
+                                                style="color:var(--text-muted); font-weight:700; text-decoration:none;">Feedback</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>02 May 2026<br><span
+                                                    style="font-size:12px;color:var(--text-muted)">11:00
+                                                    AM</span></strong></td>
+                                        <td>Historic French Chateau<br><span
+                                                style="font-size:12px;color:var(--text-muted)">Provence, France</span>
+                                        </td>
+                                        <td>John Smith</td>
+                                        <td><span class="status completed">Completed</span></td>
+                                        <td><a href="#"
+                                                style="color:var(--text-muted); font-weight:700; text-decoration:none;">Feedback</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="content-box scroll-anim full-width" style="background: rgba(15, 44, 89, 0.02);">
+                        <h2 class="section-title">Viewing Guidelines</h2>
+                        <ul
+                            style="margin-top: 15px; margin-left: 20px; line-height: 1.8; color: var(--text-muted); font-size: 14px;">
+                            <li>Please arrive 10 minutes prior to your scheduled viewing time.</li>
+                            <li>Carry a valid photo ID for security clearance at luxury estates.</li>
+                            <li>If you need to reschedule, please do so at least 24 hours in advance.</li>
+                            <li>Virtual viewings will be conducted via secure Zoom links sent to your registered email.
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+
+            <!-- ==========================================
+                 4. MY OFFERS 
+                 ========================================== -->
+            <div id="offers-view" class="view-section">
+
+                <section class="content-box scroll-anim full-width">
+                    <h2 class="section-title">Active Negotiations</h2>
+                    <div class="two-col-grid" style="margin-top: 20px;">
+                        <div class="offer-card">
+                            <div class="offer-card-details">
+                                <h4>Ocean View Villa</h4>
+                                <p><i class="fa-solid fa-location-dot"></i> Palm Jumeirah, Dubai</p>
+                                <span class="status pending" style="margin-top: 10px;">Awaiting Seller Response</span>
+                            </div>
+                            <div class="offer-card-price">
+                                <span>Your Offer</span>
+                                <h3>$ 4,200,000</h3>
+                                <span style="text-decoration: line-through; color: #ff3b3b; margin-top: 5px;">Asking:
+                                    $4.5M</span>
+                            </div>
+                        </div>
+
+                        <div class="offer-card" style="background: #FFFFFF; border-color: var(--border-line);">
+                            <div class="offer-card-details">
+                                <h4>Skyline Penthouse</h4>
+                                <p><i class="fa-solid fa-location-dot"></i> Downtown NYC, USA</p>
+                                <span class="status urgent" style="margin-top: 10px;">Counter-Offer Received</span>
+                            </div>
+                            <div class="offer-card-price">
+                                <span>Seller Counter</span>
+                                <h3>$ 8,000,000</h3>
+                                <span
+                                    style="color: var(--success); margin-top: 5px; cursor:pointer; font-weight:700;">Review
+                                    Terms <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-box scroll-anim full-width">
+                    <h2 class="section-title">Offer History</h2>
+                    <div class="table-container" style="margin-top: 20px;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date Submitted</th>
+                                    <th>Property</th>
+                                    <th>Asking Price</th>
+                                    <th>Final Offer</th>
+                                    <th>Status</th>
+                                    <th>Documents</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Today, 10:30 AM</td>
+                                    <td>Ocean View Villa</td>
+                                    <td>$ 4,500,000</td>
+                                    <td><strong>$ 4,200,000</strong></td>
+                                    <td><span class="status pending">Under Review</span></td>
+                                    <td><a href="404.html" style="color:var(--primary-navy);"><i
+                                                class="fa-solid fa-file-pdf"></i> View Offer</a></td>
+                                </tr>
+                                <tr>
+                                    <td>12 Sep 2026</td>
+                                    <td>Skyline Penthouse</td>
+                                    <td>$ 8,200,000</td>
+                                    <td><strong>$ 7,800,000</strong></td>
+                                    <td><span class="status urgent">Countered</span></td>
+                                    <td><a href="404.html" style="color:var(--primary-navy);"><i
+                                                class="fa-solid fa-file-contract"></i> View Terms</a></td>
+                                </tr>
+                                <tr>
+                                    <td>05 Aug 2026</td>
+                                    <td>Marina Bay Condo</td>
+                                    <td>$ 3,400,000</td>
+                                    <td><strong>$ 3,250,000</strong></td>
+                                    <td><span class="status rejected">Rejected</span></td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td>12 Jan 2026</td>
+                                    <td>Luxury Studio, Tokyo</td>
+                                    <td>$ 950,000</td>
+                                    <td><strong>$ 950,000</strong></td>
+                                    <td><span class="status completed">Accepted</span></td>
+                                    <td><a href="404.html" style="color:var(--success);"><i
+                                                class="fa-solid fa-file-invoice"></i> Sale Deed</a></td>
+                                </tr>
+                                <tr>
+                                    <td>15 Nov 2025</td>
+                                    <td>Victorian Townhouse</td>
+                                    <td>$ 4,150,000</td>
+                                    <td><strong>$ 3,900,000</strong></td>
+                                    <td><span class="status rejected">Withdrawn</span></td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td>20 Mar 2025</td>
+                                    <td>Alpine Ski Chalet</td>
+                                    <td>$ 6,800,000</td>
+                                    <td><strong>$ 6,500,000</strong></td>
+                                    <td><span class="status completed">Accepted</span></td>
+                                    <td><a href="404.html" style="color:var(--success);"><i
+                                                class="fa-solid fa-file-invoice"></i> Sale Deed</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <!-- ==========================================
+                 5. PROFILE SETTINGS (With Validation) 
+                 ========================================== -->
+            <div id="profile-view" class="view-section">
+                <div class="two-col-grid">
+
+                    <section class="content-box scroll-anim">
+                        <h2 class="section-title">Personal Information</h2>
+                        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 30px;">Update your contact
+                            details and preferences here.</p>
+
+                        <form id="profileForm" novalidate>
+                            <div id="profileSuccess" class="form-success-box">Profile Updated Successfully!</div>
+
+                            <div class="form-grid">
+                                <div class="input-group">
+                                    <label>Full Name</label>
+                                    <input type="text" id="profName" value="Arthur Shelby">
+                                    <div class="error-msg" id="errProfName">Please enter your full name.</div>
+                                </div>
+                                <div class="input-group">
+                                    <label>Phone Number</label>
+                                    <input type="tel" id="profPhone" value="+971 50 123 4567">
+                                    <div class="error-msg" id="errProfPhone">Enter a valid phone number.</div>
+                                </div>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="input-group">
+                                    <label>Email Address</label>
+                                    <input type="email" id="profEmail" value="arthur@example.com" readonly
+                                        style="background: #e9ecef; cursor: not-allowed;">
+                                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">Email
+                                        cannot be changed directly. Contact support.</div>
+                                </div>
+                                <div class="input-group">
+                                    <label>Preferred Contact Method</label>
+                                    <select id="profContact"
+                                        style="width: 100%; background: var(--bg-main); border: 2px solid transparent; border-radius: 8px; padding: 15px; font-size: 15px; outline: none; color: var(--primary-navy); font-weight: 500;">
+                                        <option value="email">Email</option>
+                                        <option value="phone" selected>Phone Call</option>
+                                        <option value="whatsapp">WhatsApp</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="input-group" style="margin-bottom: 30px;">
+                                <label>Current Address</label>
+                                <input type="text" id="profAddress" value="45, Downtown Boulevard, Dubai, UAE">
+                                <div class="error-msg" id="errProfAddress">Address is required.</div>
+                            </div>
+
+                            <button type="submit" class="btn-submit">Save Changes <i
+                                    class="fa-solid fa-floppy-disk"></i></button>
+                        </form>
+                    </section>
+
+                    <div style="display:flex; flex-direction:column; gap:30px;">
+
+                        <section class="content-box scroll-anim">
+    <h2 class="section-title">Change Password</h2>
+    <form id="passwordForm" novalidate style="margin-top: 20px;">
+        
+         
+        <div id="pwdSuccess" class="form-success-box">Password Updated Successfully!</div>
+        
+        <div class="input-group" style="margin-bottom: 15px;">
+            <label>Current Password</label>
+            <input type="password" id="currentPwd" placeholder="••••••••" required>
+            <div class="error-msg" id="errCurrentPwd">Current password is required.</div>
+        </div>
+        
+        <div class="input-group" style="margin-bottom: 15px;">
+            <label>New Password</label>
+            <input type="password" id="newPwd" placeholder="••••••••" required>
+            <div class="error-msg" id="errNewPwd">New password must be at least 6 characters.</div>
+        </div>
+
+         
+        <div class="input-group" style="margin-bottom: 25px;">
+            <label>Confirm New Password</label>
+            <input type="password" id="confirmPwd" placeholder="••••••••" required>
+            <div class="error-msg" id="errConfirmPwd">Passwords do not match.</div>
+        </div>
+        
+         
+        <button type="submit" class="btn-outline"
+            style="width: 100%; border-color: var(--primary-navy); color: var(--primary-navy);">
+            Update Password
+        </button>
+    </form>
+</section>
+
+                        <section class="content-box scroll-anim">
+                            <h2 class="section-title">Notifications</h2>
+                            <div style="margin-top: 20px;">
+                                <div class="toggle-row">
+                                    <div class="toggle-info">
+                                        <h4>Email Alerts</h4>
+                                        <p>New properties and price drops</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="toggle-row">
+                                    <div class="toggle-info">
+                                        <h4>SMS Reminders</h4>
+                                        <p>Viewing appointments and updates</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="toggle-row" style="border:none;">
+                                    <div class="toggle-info">
+                                        <h4>Marketing Offers</h4>
+                                        <p>Promotions and partner deals</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+
+                <section class="content-box scroll-anim full-width"
+                    style="border-color: rgba(255,0,0,0.2); background: rgba(255,0,0,0.02);">
+                    <h2 class="section-title" style="color: var(--danger);">Danger Zone</h2>
+                    <p style="font-size: 14px; color: var(--text-muted); margin: 10px 0 20px 0;">Once you delete your
+                        account, there is no going back. Please be certain.</p>
+                    <a href="404.html" class="btn-outline" style="border-color: var(--danger); color: var(--danger);"><i
+                            class="fa-solid fa-trash"></i> Delete Account</a>
+                </section>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+ 
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const openBtn = document.getElementById('openSidebar');
+        const closeBtn = document.getElementById('closeSidebar');
+
+        function toggleSidebar(show) {
+            if (show) {
+                sidebar.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden';
+            } else {
+                sidebar.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = 'auto';
+            }
+        }
+
+        openBtn.addEventListener('click', () => toggleSidebar(true));
+        closeBtn.addEventListener('click', () => toggleSidebar(false));
+        overlay.addEventListener('click', () => toggleSidebar(false));
+
+ 
+        const menuLinks = document.querySelectorAll('.sidebar-menu .menu-link');
+        const views = document.querySelectorAll('.view-section');
+        const pageTitle = document.getElementById('page-title');
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                if (this.getAttribute('href') === 'index.html') return; // Allow logout
+                e.preventDefault();
+
+                if (this.classList.contains('active')) return;
+
+                menuLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+
+                views.forEach(v => v.classList.remove('active'));
+                const targetId = this.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+
+ 
+                let titleText = this.innerText.trim();
+                if (targetId === 'dashboard-view') {
+                    pageTitle.innerHTML = `Welcome back, <span>Arthur!</span>`;
+                } else {
+                    pageTitle.innerHTML = `${titleText}`;
+                }
+
+                if (window.innerWidth <= 1024) toggleSidebar(false);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                triggerAnimations();
+            });
+        });
+
+ 
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
+        }, { threshold: 0.1 });
+
+        function triggerAnimations() {
+            const animElements = document.querySelectorAll('.scroll-anim');
+            animElements.forEach(el => { el.classList.remove('show'); observer.observe(el); });
+        }
+        triggerAnimations();
+
+ 
+        const profileForm = document.getElementById('profileForm');
+        if (profileForm) {
+            profileForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const name = document.getElementById('profName');
+                const phone = document.getElementById('profPhone');
+                const address = document.getElementById('profAddress');
+
+                const errName = document.getElementById('errProfName');
+                const errPhone = document.getElementById('errProfPhone');
+                const errAddress = document.getElementById('errProfAddress');
+                const successBox = document.getElementById('profileSuccess');
+
+                let isValid = true;
+
+ 
+                [name, phone, address].forEach(el => el.classList.remove('input-error'));
+                [errName, errPhone, errAddress].forEach(el => el.style.display = 'none');
+                successBox.style.display = 'none';
+
+ 
+                if (name.value.trim().length < 3) { name.classList.add('input-error'); errName.style.display = 'block'; isValid = false; }
+                if (phone.value.trim().length < 8) { phone.classList.add('input-error'); errPhone.style.display = 'block'; isValid = false; }
+                if (address.value.trim().length < 5) { address.classList.add('input-error'); errAddress.style.display = 'block'; isValid = false; }
+
+                if (isValid) {
+                    const btn = this.querySelector('button');
+                    const orgText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
+
+ 
+                    setTimeout(() => {
+                        successBox.style.display = 'block';
+                        window.location.href = '404.html'
+                        btn.innerHTML = orgText;
+                        setTimeout(() => successBox.style.display = 'none', 3000);
+                    }, 1200);
+                }
+            });
+
+ 
+            document.querySelectorAll('#profileForm input').forEach(input => {
+                input.addEventListener('input', function () {
+                    this.classList.remove('input-error');
+                    if (this.nextElementSibling && this.nextElementSibling.classList.contains('error-msg')) {
+                        this.nextElementSibling.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+
+
+ 
+const passwordForm = document.getElementById('passwordForm');
+if (passwordForm) {
+    passwordForm.addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevents page reload
+        
+ 
+        const currentPwd = document.getElementById('currentPwd');
+        const newPwd = document.getElementById('newPwd');
+        const confirmPwd = document.getElementById('confirmPwd');
+        
+ 
+        const errCurrent = document.getElementById('errCurrentPwd');
+        const errNew = document.getElementById('errNewPwd');
+        const errConfirm = document.getElementById('errConfirmPwd');
+        const successBox = document.getElementById('pwdSuccess');
+
+        let isValid = true;
+        
+ 
+        [currentPwd, newPwd, confirmPwd].forEach(el => el.classList.remove('input-error'));
+        [errCurrent, errNew, errConfirm].forEach(el => el.style.display = 'none');
+        successBox.style.display = 'none';
+
+ 
+        if (currentPwd.value.trim() === '') { 
+            currentPwd.classList.add('input-error'); 
+            errCurrent.style.display = 'block'; 
+            isValid = false; 
+        }
+
+ 
+        if (newPwd.value.length < 6) { 
+            newPwd.classList.add('input-error'); 
+            errNew.style.display = 'block'; 
+            isValid = false; 
+        }
+
+ 
+        if (confirmPwd.value !== newPwd.value || confirmPwd.value === '') { 
+            confirmPwd.classList.add('input-error'); 
+            errConfirm.style.display = 'block'; 
+            isValid = false; 
+        }
+
+ 
+        if (isValid) {
+            const btn = this.querySelector('button');
+            const orgText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Updating...';
+            
+ 
+            setTimeout(() => {
+                successBox.style.display = 'block';
+                btn.innerHTML = orgText; // Revert button text
+                this.reset(); // Clear all inputs
+                
+ 
+                setTimeout(() => successBox.style.display = 'none', 3000);
+                window.location.href = '404.html'
+            }, 1200);
+        }
+    });
+    
+ 
+    document.querySelectorAll('#passwordForm input').forEach(input => {
+        input.addEventListener('input', function() {
+            this.classList.remove('input-error');
+            if(this.nextElementSibling && this.nextElementSibling.classList.contains('error-msg')) {
+                this.nextElementSibling.style.display = 'none';
+            }
+        });
+    });
+}
+    </script>
+</body>
+
+</html>

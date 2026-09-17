@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="real.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    
+
+    <header class="premium-navbar" id="mainNavbar">
+    <div class="nav-container">
+        
+       <a href="index.html" class="nav-logo">
+            <a href="index.html" class="logo-container">
+                <img src="./asset/logo (4).webp" alt="Company Logo" class="logo-img">
+            </a>
+        </a>
+
+         
+        <nav class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            
+             
+            <a href="login.html" class="btn-login-mobile">
+                <i class="fa-regular fa-user"></i> Login / Register
+            </a>
+        </nav>
+
+         
+        <div class="nav-actions">
+             
+            <a href="login.html" class="btn-login-desktop">
+                <i class="fa-regular fa-user"></i> Login
+            </a>
+            
+             
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+
+    </div>
+</header>
+
+
+     
+<section class="about-hero-light" id="hero">
+    
+     
+    <div class="hero-glow-light glow-top-left"></div>
+    <div class="hero-glow-light glow-bottom-right"></div>
+
+    <div class="container hero-container-light">
+        
+         
+        <div class="hero-text-light">
+            
+             
+            <div class="breadcrumb-light" data-aos="fade-down" data-aos-duration="1000">
+                <a href="index.html"><i class="fa-solid fa-house-chimney"></i> Home</a>
+                <i class="fa-solid fa-chevron-right separator"></i>
+                <span class="active">About </span>
+            </div>
+
+             
+            <h1 data-aos="fade-right" data-aos-duration="1200" data-aos-delay="200">
+                Crafting <span>Legacies</span> in Real Estate
+            </h1>
+            
+            <p class="hero-desc-light" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="400">
+                We are more than just an agency. We are a team of passionate visionaries dedicated to finding you not just a house, but a place you can truly call home.
+            </p>
+
+             
+            <div class="hero-quick-stats-light" data-aos="fade-up" data-aos-delay="600">
+                <div class="stat-item">
+                    <i class="fa-solid fa-calendar-check fa-beat-fade"></i>
+                    <div>
+                        <h4>Est. 2010</h4>
+                        <span>Foundation</span>
+                    </div>
+                </div>
+                <div class="stat-divider-light"></div>
+                <div class="stat-item">
+                    <i class="fa-solid fa-trophy fa-bounce"></i>
+                    <div>
+                        <h4>No. 1</h4>
+                        <span>Awarded Agency</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         
+        <div class="hero-visual-light" data-aos="zoom-in-left" data-aos-duration="1500" data-aos-delay="300">
+             
+            <div class="visual-frame-light"></div>
+            
+             
+            <img src="./asset/h11.webp" alt="About Agency" class="floating-img">
+            
+             
+            <div class="floating-badge-light">
+                <div class="badge-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="badge-text">
+                    <strong>100% Trusted</strong>
+                    <span>Verified Properties</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+   
+</section>
+
+
+ 
+<section class="our-story-light" id="story">
+    <div class="container story-container-light">
+
+         
+        <div class="story-content-light" data-aos="fade-right" data-aos-duration="1200">
+            <span class="subtitle-badge-light">
+                <i class="fa-solid fa-book-open fa-fade"></i> Our Story
+            </span>
+            <h2>The Journey of <span>Excellence</span></h2>
+            <p class="story-desc">
+                What started as a small dream in 2010 has now grown into a premier real estate agency. Click on our timeline below to see our journey.
+            </p>
+
+             
+            <div class="timeline-wrapper">
+                
+                 
+                <div class="timeline-item" onclick="changeStoryImg('year2010')" data-aos="fade-up" data-aos-delay="200" style="cursor: pointer;">
+                    <div class="timeline-dot"><i class="fa-solid fa-seedling"></i></div>
+                    <div class="timeline-box">
+                        <h4>2010 - The Beginning</h4>
+                        <p>Started with a small office and a massive vision to revolutionize property buying.</p>
+                    </div>
+                </div>
+                
+                 
+                <div class="timeline-item" onclick="changeStoryImg('year2018')" data-aos="fade-up" data-aos-delay="400" style="cursor: pointer;">
+                    <div class="timeline-dot"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="timeline-box">
+                        <h4>2018 - Market Leaders</h4>
+                        <p>Expanded to 50+ cities and won the prestigious 'Best Agency of the Year' award.</p>
+                    </div>
+                </div>
+                
+                 
+                <div class="timeline-item" onclick="changeStoryImg('year2026')" data-aos="fade-up" data-aos-delay="600" style="cursor: pointer;">
+                    <div class="timeline-dot"><i class="fa-solid fa-globe"></i></div>
+                    <div class="timeline-box">
+                        <h4>2026 - Global Reach</h4>
+                        <p>Celebrating thousands of happy families and continuously setting new industry standards.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+         
+        <div class="story-visuals-light" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="300">
+            <div class="single-img-wrapper">
+                 
+                <img src="./asset/h8.webp" alt="Our Journey" id="storyMainImg" class="story-single-img">
+                
+                 
+                <div class="years-badge-light">
+                    <i class="fa-solid fa-medal"></i>
+                    <div class="badge-text-right">
+                        <span>16+ Years</span>
+                        <small>Trust & Success</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+ 
+<section class="vision-mission-expand" id="philosophy">
+    <div class="container">
+        
+        
+<div class="section-header-animated">
+    
+     
+    <div class="badge-wrapper" data-aos="zoom-in" data-aos-duration="1000">
+        <span class="subtitle-badge-pulse">
+            <i class="fa-solid fa-lightbulb fa-beat-fade"></i> Core Philosophy
+        </span>
+    </div>
+
+     
+    <h2 data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+        Our Vision & <span class="text-glow">Mission</span>
+    </h2>
+
+     
+    <p class="section-desc-center" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+        Hover over the panels below to discover our driving force.
+    </p>
+
+     
+    <div class="animated-separator" data-aos="zoom-in" data-aos-delay="600"></div>
+
+</div>
+
+         
+        <div class="expand-wrapper" data-aos="fade-up" data-aos-duration="1200">
+            
+             
+            <div class="expand-panel" style="background-image: url('./asset/h4.webp');">
+                <div class="panel-overlay"></div>
+                <div class="panel-content">
+                    <div class="panel-icon"><i class="fa-solid fa-eye"></i></div>
+                    <h3>Our Vision</h3>
+                    <div class="panel-text">
+                        <p>To be the most trusted and globally recognized real estate agency, setting new standards in property buying, selling, and investments through continuous innovation.</p>
+                    </div>
+                </div>
+            </div>
+
+             
+            <div class="expand-panel" style="background-image: url('./asset/h5.webp');">
+                <div class="panel-overlay"></div>
+                <div class="panel-content">
+                    <div class="panel-icon"><i class="fa-solid fa-bullseye"></i></div>
+                    <h3>Our Mission</h3>
+                    <div class="panel-text">
+                        <p>To empower families and investors by providing 100% transparent, zero-commission, and legally verified real estate solutions for a joyful journey.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+ 
+<section class="core-values-section" id="values">
+    <div class="container">
+        
+         
+        <div class="section-header-animated">
+            <div class="badge-wrapper" data-aos="zoom-in">
+                <span class="subtitle-badge-pulse">
+                    <i class="fa-solid fa-gem fa-beat-fade"></i> Core Values
+                </span>
+            </div>
+            <h2 data-aos="fade-up" data-aos-delay="200">What We <span class="text-glow">Stand For</span></h2>
+            <p class="section-desc-center" data-aos="fade-up" data-aos-delay="400">
+                The fundamental principles that guide our everyday actions, ensuring you get the best real estate experience.
+            </p>
+            <div class="animated-separator" data-aos="zoom-in" data-aos-delay="600"></div>
+        </div>
+
+         
+        <div class="values-grid">
+            
+             
+            <div class="flip-card-pro" data-aos="zoom-in-up" data-aos-delay="100">
+                <div class="flip-card-inner">
+                     
+                    <div class="flip-card-front">
+                        <div class="value-icon-pro"><i class="fa-solid fa-handshake-angle"></i></div>
+                        <h3>Trust</h3>
+                    </div>
+                     
+                    <div class="flip-card-back">
+                        <i class="fa-solid fa-handshake-angle back-icon"></i>
+                        <h3>Trust</h3>
+                        <p>We build lasting relationships through 100% transparency and secure, verified transactions.</p>
+                    </div>
+                </div>
+            </div>
+
+             
+            <div class="flip-card-pro" data-aos="zoom-in-up" data-aos-delay="300">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="value-icon-pro"><i class="fa-solid fa-scale-balanced"></i></div>
+                        <h3>Integrity</h3>
+                    </div>
+                    <div class="flip-card-back">
+                        <i class="fa-solid fa-scale-balanced back-icon"></i>
+                        <h3>Integrity</h3>
+                        <p>Honesty is our policy. Zero hidden charges, ethical practices, and true legal guidance.</p>
+                    </div>
+                </div>
+            </div>
+
+             
+            <div class="flip-card-pro" data-aos="zoom-in-up" data-aos-delay="500">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="value-icon-pro"><i class="fa-solid fa-medal"></i></div>
+                        <h3>Quality</h3>
+                    </div>
+                    <div class="flip-card-back">
+                        <i class="fa-solid fa-medal back-icon"></i>
+                        <h3>Quality</h3>
+                        <p>Only the finest properties make our list. We never compromise on construction and location quality.</p>
+                    </div>
+                </div>
+            </div>
+
+             
+            <div class="flip-card-pro" data-aos="zoom-in-up" data-aos-delay="700">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="value-icon-pro"><i class="fa-solid fa-heart-circle-check"></i></div>
+                        <h3>Commitment</h3>
+                    </div>
+                    <div class="flip-card-back">
+                        <i class="fa-solid fa-heart-circle-check back-icon"></i>
+                        <h3>Commitment</h3>
+                        <p>We are dedicated to you 24/7, from the first site visit to handing over the keys to your dream home.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+ 
+<section class="milestones-light" id="milestones">
+    <div class="container">
+        
+        <div class="milestones-grid-light">
+            
+             
+            <div class="mile-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="mile-icon-box">
+                    <i class="fa-solid fa-building-circle-check"></i>
+                </div>
+                <div class="mile-counter-wrap">
+                    <h3 class="counter" data-target="500">0</h3><span class="plus-icon">+</span>
+                </div>
+                <p>Properties Sold</p>
+            </div>
+
+             
+            <div class="mile-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="mile-icon-box">
+                    <i class="fa-solid fa-face-smile-beam"></i>
+                </div>
+                <div class="mile-counter-wrap">
+                    <h3 class="counter" data-target="1200">0</h3><span class="plus-icon">+</span>
+                </div>
+                <p>Happy Clients</p>
+            </div>
+
+             
+            <div class="mile-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="mile-icon-box">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+                <div class="mile-counter-wrap">
+                    <h3 class="counter" data-target="50">0</h3><span class="plus-icon">+</span>
+                </div>
+                <p>Cities Covered</p>
+            </div>
+
+             
+            <div class="mile-card" data-aos="fade-up" data-aos-delay="700">
+                <div class="mile-icon-box">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <div class="mile-counter-wrap">
+                    <h3 class="counter" data-target="25">0</h3><span class="plus-icon">+</span>
+                </div>
+                <p>Industry Awards</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+ 
+<section class="testimonial-split-section" id="testimonials">
+    <div class="container">
+        
+         
+<div class="testi-centered-header" data-aos="zoom-in" data-aos-duration="1000">
+    <div class="testi-badge-gold">
+        <span class="line-left"></span>
+        <span class="badge-content"><i class="fa-solid fa-quote-left fa-bounce"></i> What People Say</span>
+        <span class="line-right"></span>
+    </div>
+    <h2 class="testi-main-heading" data-aos="fade-up" data-aos-delay="200">
+        Loved by clients, built for <span class="gold-highlight">real results</span>
+    </h2>
+</div>
+
+         
+        <div class="testi-split-wrapper">
+            
+             
+            <div class="testi-featured-area" data-aos="fade-right" data-aos-delay="400">
+                 
+                <div class="bg-card bg-card-2"></div>
+                <div class="bg-card bg-card-1"></div>
+                
+                 
+                <div class="testi-main-card" id="mainTestimonialCard">
+                    
+                    <div class="testi-card-header">
+                        <div class="testi-author-info">
+                            <img src="./asset/woman1.webp" alt="Meera Iyer" id="mainImage">
+                            <div>
+                                <h4 id="mainName">Meera Iyer <i class="fa-solid fa-circle-check verified-icon"></i></h4>
+                                <span id="mainRole">@meeraiyer · First-time Buyer</span>
+                            </div>
+                        </div>
+                        <div class="quote-icon-ring">
+                            <div class="ring-dot"></div>
+                        </div>
+                    </div>
+
+                    <p class="testi-card-body" id="mainText">
+                        "Fast, transparent, and genuinely collaborative. Every milestone was communicated clearly, and they helped us secure our dream home exactly on time. Highly recommended!"
+                    </p>
+
+                    <div class="testi-card-footer" id="mainDate">
+                        2:14 PM · Aug 2026
+                    </div>
+                </div>
+            </div>
+
+             
+            <div class="testi-list-area" data-aos="fade-left" data-aos-delay="600">
+                <h5 class="testi-list-title">TESTIMONIALS</h5>
+                
+                <div class="testi-users-list">
+                     
+                    <div class="testi-user-item active-user" onclick="changeTestimonial(0, this)">
+                        <img src="./asset/woman1.webp" alt="Meera">
+                        <div class="user-item-info">
+                            <h4>Meera Iyer</h4>
+                            <span>First-time Buyer</span>
+                        </div>
+                    </div>
+
+                     
+                    <div class="testi-user-item" onclick="changeTestimonial(1, this)">
+                        <img src="./asset/man1.webp" alt="Daniel">
+                        <div class="user-item-info">
+                            <h4>Daniel Cross</h4>
+                            <span>Property Investor</span>
+                        </div>
+                    </div>
+
+                     
+                    <div class="testi-user-item" onclick="changeTestimonial(2, this)">
+                        <img src="./asset/man3.webp" alt="Arjun">
+                        <div class="user-item-info">
+                            <h4>Arjun Kapoor</h4>
+                            <span>NRI Client</span>
+                        </div>
+                    </div>
+
+                     
+                    <div class="testi-user-item" onclick="changeTestimonial(3, this)">
+                        <img src="./asset/woman2.webp" alt="Priya">
+                        <div class="user-item-info">
+                            <h4>Priya Nair</h4>
+                            <span>Luxury Villa Owner</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+ 
+<section class="cta-section-pro" id="cta">
+    
+     
+    <div class="cta-overlay-pro"></div>
+    
+     
+    <div class="cta-shape shape-1"></div>
+    <div class="cta-shape shape-2"></div>
+
+    <div class="container cta-container-pro">
+        
+         
+        <div class="cta-content-pro" data-aos="zoom-in" data-aos-duration="1200">
+            <span class="subtitle-badge-light" style="background: rgba(255,255,255,0.1); color: #E8C872; border-color: rgba(232, 200, 114, 0.3);">
+                <i class="fa-solid fa-key fa-shake"></i> Let's Get Started
+            </span>
+            
+            <h2>Ready to Find Your <span>Dream Home?</span></h2>
+            
+            <p>Join thousands of satisfied homeowners who trusted DreamHomes. Get in touch with our experts today and step into your future with confidence.</p>
+            
+             
+            <div class="cta-btn-wrapper" data-aos="fade-up" data-aos-delay="300">
+                <a href="404.html" class="cta-btn-pro">
+                    Get in Touch <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
+                 
+                <div class="btn-glow-pulse"></div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+<footer class="footer-section" id="contact">
+    <div class="container">
+         
+        <div class="footer-grid">
+            
+             
+            <div class="footer-col" data-aos="fade-up" data-aos-delay="200">
+                <a href="index.html" class="logo-container">
+                <img src="./asset/logo (4).webp" alt="Company Logo" class="logo-img">
+            </a>
+                <p class="footer-desc">
+                    Your trusted partner in finding the perfect home. We provide premium real estate services with absolute transparency.
+                </p>
+                <div class="footer-social">
+                    <a href="404.html" class="f-social-link"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="404.html" class="f-social-link"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="404.html" class="f-social-link"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="404.html" class="f-social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+             
+            <div class="footer-col" data-aos="fade-up" data-aos-delay="400">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fa-solid fa-angle-right"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fa-solid fa-angle-right"></i> About</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-angle-right"></i> Services</a></li>
+                    <li><a href="blog.html"><i class="fa-solid fa-angle-right"></i> Blog</a></li>
+                    <li><a href="contact.html"><i class="fa-solid fa-angle-right"></i> Contact</a></li>
+                </ul>
+            </div>
+
+             
+            <div class="footer-col" data-aos="fade-up" data-aos-delay="600">
+                <h3>Contact Info</h3>
+                <ul class="footer-contact">
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>123 Real Estate Ave,<br>Beverly Hills, CA 90210</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+1 (800) 123-4567</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>contact@dreamhomes.com</span>
+                    </li>
+                </ul>
+            </div>
+
+             
+            <div class="footer-col" data-aos="fade-up" data-aos-delay="800">
+                <h3>Newsletter</h3>
+                <p class="footer-desc">Subscribe to our newsletter to get the latest properties and market updates.</p>
+                
+                <form class="newsletter-form-pro" id="newsletterForm">
+                    <input type="text" id="newsletterEmail" placeholder="Enter your email id..." autocomplete="off">
+                    <button type="submit" class="news-btn-pro">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+                
+                 
+                <p id="newsMessage" class="news-message"></p>
+            </div>
+
+        </div>
+    </div>
+
+     
+    <div class="footer-bottom">
+        <div class="container">
+            <p>&copy; 2026 DreamHomes Real Estate. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+
+
+     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="main.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 50
+        });
+    </script>
+
+    <script>
+ 
+const timelineImages = {
+    'year2010': './asset/h3.webp',
+    'year2018': './asset/h4.webp',
+    'year2026': './asset/h5.webp'
+};
+
+ 
+function changeStoryImg(year) {
+    const mainImg = document.getElementById('storyMainImg');
+
+ 
+    mainImg.style.opacity = '0.3';
+
+ 
+    setTimeout(() => {
+        mainImg.src = timelineImages[year];
+        mainImg.style.opacity = '1';
+    }, 300); // 300ms matches the CSS transition time
+}
+
+
+
+
+ 
+const counters = document.querySelectorAll('.counter');
+const speed = 100; // Animation speed (Lower is faster)
+
+ 
+const counterObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const counter = entry.target;
+            
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target'); // Get target number
+                const count = +counter.innerText; // Get current number
+                
+ 
+                const inc = target / speed;
+
+                if (count < target) {
+ 
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(updateCount, 20);
+                } else {
+                    counter.innerText = target; // Ensure it ends exactly on target
+                }
+            };
+            
+            updateCount();
+            observer.unobserve(counter); // Stop observing once animation is done
+        }
+    });
+}, { threshold: 0.5 }); // Starts when 50% of the section is visible
+
+ 
+counters.forEach(counter => {
+    counterObserver.observe(counter);
+});
+
+
+
+
+ 
+const testimonials = [
+    {
+        name: "Meera Iyer",
+        role: "@meeraiyer · First-time Buyer",
+        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
+        text: '"Fast, transparent, and genuinely collaborative. Every milestone was communicated clearly, and they helped us secure our dream home exactly on time. Highly recommended!"',
+        date: "2:14 PM · Aug 2026"
+    },
+    {
+        name: "Daniel Cross",
+        role: "@danielc · Property Investor",
+        image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
+        text: '"The level of professionalism is unmatched. Their market insights helped me secure a highly profitable off-market property in downtown. A truly seamless experience."',
+        date: "11:30 AM · Sep 2026"
+    },
+    {
+        name: "Arjun Kapoor",
+        role: "@arjunk · NRI Client",
+        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
+        text: '"Managing property purchases from abroad is usually stressful, but DreamHomes handled all the legalities and paperwork effortlessly. Total peace of mind!"',
+        date: "04:45 PM · Jul 2026"
+    },
+    {
+        name: "Priya Nair",
+        role: "@priyan · Luxury Villa Owner",
+        image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
+        text: '"From the initial consultation to handing over the keys, the service was pure luxury. They understood exactly what my family needed. Exceptional team!"',
+        date: "09:15 AM · Oct 2026"
+    }
+];
+
+function changeTestimonial(index, element) {
+ 
+    const listItems = document.querySelectorAll('.testi-user-item');
+    listItems.forEach(item => item.classList.remove('active-user'));
+    
+ 
+    element.classList.add('active-user');
+
+ 
+    const mainCard = document.getElementById('mainTestimonialCard');
+    
+ 
+    mainCard.classList.add('fade-anim');
+
+ 
+    setTimeout(() => {
+        document.getElementById('mainName').innerHTML = `${testimonials[index].name} <i class="fa-solid fa-circle-check verified-icon"></i>`;
+        document.getElementById('mainRole').innerText = testimonials[index].role;
+        document.getElementById('mainImage').src = testimonials[index].image;
+        document.getElementById('mainText').innerText = testimonials[index].text;
+        document.getElementById('mainDate').innerText = testimonials[index].date;
+        
+        mainCard.classList.remove('fade-anim');
+    }, 300);
+}
+    </script>
+</body>
+</html>

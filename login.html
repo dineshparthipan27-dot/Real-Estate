@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DreamHomes | Exclusive Portal</title>
+
+     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+     
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+     
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <div class="auth-split-container">
+
+         
+        <div class="auth-banner">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Luxury Mansion" class="banner-bg">
+            <div class="banner-overlay"></div>
+
+            <div class="banner-content">
+                <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Homepage</a>
+
+                <div class="pulse-badge">
+                    <span class="dot"></span> Secure Client Portal
+                </div>
+
+                <div class="banner-text">
+                    <h1>Unlock Your<br><span>Dream Property.</span></h1>
+                    <p>Access your exclusive dashboard to manage viewings, track offers, and discover premium off-market listings.</p>
+                </div>
+
+                <div class="glass-stats-wrapper">
+                    <div class="glass-stat-card">
+                        <i class="fa-solid fa-earth-americas"></i>
+                        <div>
+                            <h4>15,000+</h4>
+                            <span>Global Listings</span>
+                        </div>
+                    </div>
+                    <div class="glass-stat-card">
+                        <i class="fa-solid fa-user-tie"></i>
+                        <div>
+                            <h4>500+</h4>
+                            <span>Elite Agents</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         
+        <div class="auth-form-area">
+            <div class="form-container">
+
+                <div class="form-header">
+                    <div class="logo">
+                        <img src="./asset/logo (4).webp" alt="Company Logo" class="logo-img">
+                    </div>
+                    <p class="auth-subtitle">Provide your credentials to enter the digital circle.</p>
+                </div>
+
+                 
+                <div class="pill-tabs">
+                    <div class="pill-slider" id="pillSlider"></div>
+                    <button class="pill-btn active" id="btnShowLogin">Sign In</button>
+                    <button class="pill-btn" id="btnShowSignup">Register</button>
+                </div>
+
+                 
+                <form id="loginForm" class="auth-form active-form" novalidate>
+                    
+                    <div class="input-group">
+                        <i class="fa-solid fa-shield-halved group-icon"></i>
+                        <select id="loginRole" required>
+                            <option value="" disabled selected></option>
+                            <option value="user">Admin</option>
+                            <option value="admin">User</option>
+                        </select>
+                        <label>Select Access Tier</label>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fa-solid fa-envelope group-icon"></i>
+                        <input type="email" id="loginEmail" placeholder=" " required autocomplete="off">
+                        <label>Registered Email</label>
+                        <span class="error-msg" id="loginEmailError"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fa-solid fa-lock group-icon"></i>
+                        <input type="password" id="loginPassword" placeholder=" " required>
+                        <label>Secure Password</label>
+                        <i class="fa-solid fa-eye toggle-pwd"></i>
+                        <span class="error-msg" id="loginPasswordError"></span>
+                    </div>
+
+                    <div class="form-actions">
+                        <label class="remember-checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span> Remember me
+                        </label>
+                        <a href="404.html" class="forgot-link">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        Enter Portal <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    </button>
+                </form>
+
+                 
+                <form id="signupForm" class="auth-form" novalidate>
+                    
+                    <div class="input-group">
+                        <i class="fa-regular fa-user group-icon"></i>
+                        <input type="text" id="signupName" placeholder=" " required autocomplete="off">
+                        <label>Full Name</label>
+                        <span class="error-msg" id="signupNameError"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fa-solid fa-envelope group-icon"></i>
+                        <input type="email" id="signupEmail" placeholder=" " required autocomplete="off">
+                        <label>Email Address</label>
+                        <span class="error-msg" id="signupEmailError"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fa-solid fa-lock group-icon"></i>
+                        <input type="password" id="signupPassword" placeholder=" " required>
+                        <label>Create Password</label>
+                        <i class="fa-solid fa-eye toggle-pwd"></i>
+                        <span class="error-msg" id="signupPasswordError"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fa-solid fa-lock group-icon"></i>
+                        <input type="password" id="signupConfirm" placeholder=" " required>
+                        <label>Confirm Password</label>
+                        <i class="fa-solid fa-eye toggle-pwd"></i>
+                        <span class="error-msg" id="signupConfirmError"></span>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        Join The Network <i class="fa-solid fa-gem"></i>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+     
+    <script src="login.js"></script>
+</body>
+</html>
